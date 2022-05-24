@@ -8,33 +8,34 @@
         <link rel="stylesheet" href="/stylesheets/output.css">
     </head>
     <body>
-        <header class="container mx-auto">
-            <nav class="container mx-auto">
-                <div class="columns-1">
-                    <a href="/">Home</a>
+        <div class="container mx-auto bg-teal-300">
+            <header class="bg-stone-900">
+                <nav class="grid grid-cols-3 sm:grid-cols-5 pt-4 pl-10 text-sm sm:text-base md:text-lg text-teal-300">
+                    <div>
+                        <a href="/">Home</a>
+                    </div>
+                    <div>
+                        <a href="/">Dashboard</a>
+                    </div>
+                    {{#if loggedIn}}
+                    <div>
+                        <button id="logout" class="btn-no-style">Logout</button>
+                    </div>
+                    {{else}}
+                    <div>
+                        <a href="/">Login</a>
+                    </div>
+                    {{/if}}
+                </nav>
+            </header>
+            <main>
+                {{{ body }}}
+            </main>
+            <footer class="flex justify-center">
+                <div class="w-1/2 border-t-2 border-stone-900 text-center">
+                    Made by Jonathan Kim
                 </div>
-                <div class="columns-1">
-                    <a href="/">Dashboard</a>
-                </div>
-                {{#if loggedIn}}
-                <div class="columns-1">
-                    <button id="logout" class="btn-no-style">Logout</button>
-                </div>
-                {{else}}
-                <div class="columns-1">
-                    <a href="/">Login</a>
-                </div>
-                {{/if}}
-            </nav>
-            <h1>
-                <a href="/">Tech Blog</a>
-            </h1>
-        </header>
-        <main>
-            {{{ body }}}
-        </main>
-        <footer>
-            Made by Jonathan Kim
-        </footer>
+            </footer>
+        </div>
     </body>
 </html>
