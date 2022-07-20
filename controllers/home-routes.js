@@ -3,7 +3,8 @@ const sequelize = require('../config/connection');
 
 router.get('/', (req, res) => {
     res.render('homepage', {
-        loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn,
+        techBlog: true
     });
 });
 
@@ -12,7 +13,9 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('login');
+    res.render('login', {
+        techBlog: true
+    });
 });
 
 router.get('/signup', (req, res) => {
@@ -20,7 +23,9 @@ router.get('/signup', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('signup');
+    res.render('signup', {
+        techBlog: true
+    });
 });
 
 module.exports = router;

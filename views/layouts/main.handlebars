@@ -8,16 +8,16 @@
         <link rel="stylesheet" href="/stylesheets/output.css">
     </head>
     <body>
-        <div class="container mx-auto bg-teal-300">
+        <div class="mx-auto bg-teal-300">
             <header class="bg-stone-900">
-                <nav class="grid grid-cols-3 sm:grid-cols-5 pt-4 pl-10 text-sm sm:text-base md:text-lg text-teal-300">
+                <nav class="flex space-x-10 pt-4 pl-10 text-sm sm:text-base md:text-lg text-teal-300">
                     <div>
                         <a href="/">Home</a>
                     </div>
-                    <div>
-                        <a href="/">Dashboard</a>
-                    </div>
                     {{#if loggedIn}}
+                    <div>
+                        <a href="/dashboard">Dashboard</a>
+                    </div>
                     <div>
                         <button id="logout" class="btn-no-style">Logout</button>
                     </div>
@@ -28,6 +28,15 @@
                     {{/if}}
                 </nav>
             </header>
+            <div class="grid grid-cols-3 sm:grid-cols-5 py-4 pl-10 bg-stone-900">
+                <div class="z-10 py-2 bg-teal-300 rounded text-center text-base text-sm sm:text-md md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-stone-900 shadow-[5px_5px_3px_1px_rgba(100,116,139,1)]">
+                    {{#if techBlog}}
+                        The Tech Blog
+                    {{else}}
+                        Your Dashboard
+                    {{/if}}
+                </div>
+            </div>
             <main>
                 {{{ body }}}
             </main>
@@ -37,5 +46,8 @@
                 </div>
             </footer>
         </div>
+        {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+        {{/if}}
     </body>
 </html>
