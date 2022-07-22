@@ -76,7 +76,8 @@ router.get('/:post_id/:id', withAuth, (req, res) => {
         const comment = dbCommentData.get({ plain: true });
         res.render('singlecomment', {
             comment,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            techBlog: true
         });
     }).catch(err => {
         console.log(err);
@@ -117,7 +118,8 @@ router.get('/:id', (req, res) => {
         const post = dbPostData.get({ plain: true });
         res.render('singlepost', {
             post,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            techBlog: true
         });
     }).catch(err => {
         console.log(err);
