@@ -1,0 +1,29 @@
+<div class="flex justify-center grid grid-cols-12 my-2">
+    {{> post-home post}}
+    <div class="col-span-8 col-start-3 rounded border border-stone-900 my-2">
+        <div class="bg-stone-900 text-teal-300 text-xl p-2">
+            Comments
+        </div>
+        {{#each post.comments as |comment|}}
+        <div class="m-2 px-2 border rounded-lg border-stone-900">
+            <a href="/{{post_id}}/{{id}}">
+                <p class="text-lg">{{comment_text}}</p>
+                By <span class="font-bold">{{user.username}}</span> on {{format_date created_at}}
+            </a>
+        </div>
+        {{/each}}
+        {{#if loggedIn}}
+        <form class="pt-2" id="add-comment">
+            <div class="text-center">
+                <textarea class="border-2 rounded w-3/4 focus:shadow-outline" id="comment-text" name="comment-text" rows="4" resize="none"></textarea>
+            </div>
+            <div class="text-center mb-2">
+                <button class="bg-stone-900 rounded py-2 w-80 text-lg text-white hover:bg-stone-700" type="submit">Add Comment</button>
+            </div>
+        </form>
+        {{/if}}
+    </div>
+</div>
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}

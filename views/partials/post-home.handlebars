@@ -1,0 +1,13 @@
+<a href="/{{id}}" class="col-span-8 col-start-3 rounded border border-stone-900 my-2">
+    <div class="grid grid-cols-4 bg-stone-900 text-teal-300 text-xl p-2">
+        <div class="col-span-3">
+            {{title}}
+        </div>
+        <div class="flex justify-end">
+            Posted by {{user.username}} on {{format_date created_at}}
+        </div>
+    </div>
+    <div class="px-2 my-2">
+        {{content}}
+    </div>
+</a>

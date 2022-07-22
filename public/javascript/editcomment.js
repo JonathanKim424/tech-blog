@@ -1,6 +1,9 @@
 const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
 ];
+const post_id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 2
+];
 const modal = document.getElementById('deleteModal');
 const openModal = document.getElementById('openModal');
 const close = document.getElementById('close');
@@ -21,42 +24,39 @@ window.onclick = function(event) {
 async function actionHandler(event) {
     event.preventDefault();
     if (event.target.id === 'update') {
-        const title = document.querySelector('#post-title').value.trim();
-        const content = document.querySelector('#post-content').value.trim();
-        if (title && content && id) {
-            const response = await fetch(`/api/posts/${id}`, {
+        const comment_text = document.querySelector('#comment-text').value.trim();
+        if (comment_text && id) {
+            const response = await fetch(`/api/comments/${id}`, {
                 method: 'put',
                 body: JSON.stringify({
-                    title,
-                    content
+                    comment_text
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.ok) {
-                alert('Post updated successfully!');
-                document.location.replace('/dashboard');
+                document.location.replace(`/${post_id}`);
             } else {
                 alert(response.statusText);
             }
         } else {
-            alert('Unable to update post!');
+            alert('Unable to update comment!');
         }
     }
 }
 
 deleteBtn.onclick = async function() {
     if (id) {
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`/api/comments/${id}`, {
             method: 'delete'
         });
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace(`/${post_id}`);
         } else {
             alert(response.statusText);
         }
     } else {
-        alert('Unable to delete post!');
+        alert('Unable to delete comment!');
     }
 }
 
-document.querySelector('.post-btn').addEventListener('click', actionHandler);
+document.querySelector('.comment-btn').addEventListener('click', actionHandler);

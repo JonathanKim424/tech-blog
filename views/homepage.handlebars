@@ -1,3 +1,13 @@
 <div>
-    Under construction!
+    {{#if posts.length}}
+    <section class="flex justify-center grid grid-cols-12 my-2">
+        {{#each posts as |post|}}
+            {{> post-home post}}
+        {{/each}}
+    </section>
+    {{else}}
+    <section class="py-10 text-center text-xl font-bold">
+        No one's made a post yet!
+    </section>
+    {{/if}}
 </div>
